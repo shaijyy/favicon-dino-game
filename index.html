@@ -261,30 +261,43 @@
 		}
 			
 		// game over
-		var newSpacePress = true;
-		function gameOverStart() {
-			
-			// set and display high score
-			if (score > highScore) {
-				highScore = score;
-				document.title = "HI: " + highScore;
-			}
-			
-			if (spaceDown) {
-				// prevent the game from starting over if space was already held down
-				newSpacePress = false;
-			}
-		}
+var newSpacePress = true;
+var firstHighScoreAchieved = false;
+
+function gameOverStart() {
+	// set and display high score
+	if (score > highScore) {
+		highScore = score;
 		
-		function gameOver() {
-			// prevent the game from starting over if space was already held down
-			if (spaceDown && newSpacePress) {
-				currentState = game;
-				gameStart();
-			} else if (!spaceDown && !newSpacePress) {
-				newSpacePress = true;
-			}
+		if (!firstHighScoreAchieved) {
+			// First time setting a new high score
+			document.title = "NEW HI";
+			firstHighScoreAchieved = true;
+		} else {
+			// Subsequent new high scores
+			document.title = "Score: " + score + " | HI: " + highScore;
 		}
+	} else {
+		// No new high score
+		document.title = "Score: " + score + " | HI: " + highScore;
+	}
+
+	if (spaceDown) {
+		// prevent the game from starting over if space was already held down
+		newSpacePress = false;
+	}
+}
+
+function gameOver() {
+	// prevent the game from starting over if space was already held down
+	if (spaceDown && newSpacePress) {
+		currentState = game;
+		gameStart();
+	} else if (!spaceDown && !newSpacePress) {
+		newSpacePress = true;
+	}
+}
+
 		
 		</script>
 	</body>
