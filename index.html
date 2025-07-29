@@ -260,43 +260,56 @@
 			yVel = 0;
 		}
 			
-		// game over
 var newSpacePress = true;
 var firstHighScoreAchieved = false;
+var titleFlashInterval = null;
+
+function startTitleFlash(text) {
+	clearInterval(titleFlashInterval); // Clear any existing interval
+	let visible = true;
+	titleFlashInterval = setInterval(() => {
+		document.title = visible ? text : "";
+		visible = !visible;
+	}, 500); // Change flash speed (ms) as needed
+}
+
+function stopTitleFlash() {
+	clearInterval(titleFlashInterval);
+	titleFlashInterval = null;
+}
 
 function gameOverStart() {
-	// set and display high score
 	if (score > highScore) {
 		highScore = score;
-		
+
 		if (!firstHighScoreAchieved) {
-			// First time setting a new high score
-			document.title = "NEW HI: " + highScore;
+			// First time getting a high score
 			firstHighScoreAchieved = true;
+			startTitleFlash("NEW HI: " + highScore);
 		} else {
-			// Subsequent new high scores
+			stopTitleFlash();
 			document.title = "Score: " + score + " | HI: " + highScore;
 		}
 	} else {
-		// No new high score
+		stopTitleFlash();
 		document.title = "Score: " + score + " | HI: " + highScore;
 	}
 
 	if (spaceDown) {
-		// prevent the game from starting over if space was already held down
 		newSpacePress = false;
 	}
 }
 
 function gameOver() {
-	// prevent the game from starting over if space was already held down
 	if (spaceDown && newSpacePress) {
+		stopTitleFlash(); // Stop flashing before restarting
 		currentState = game;
 		gameStart();
 	} else if (!spaceDown && !newSpacePress) {
 		newSpacePress = true;
 	}
 }
+
 
 		
 		</script>
