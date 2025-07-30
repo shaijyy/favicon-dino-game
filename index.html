@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FAVICON GAMES</title>
+    <link rel="shortcut icon" type="image/x-icon" href="images/menu.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .menu-container {
+            display: flex;
+            gap: 40px;
+        }
+
+        .menu-item {
+            width: 64px;
+            height: 64px;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+            border-radius: 8px;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        a {
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menu-container">
+        <a href="favicon-game.html">
+            <img src="images/dinogame.png" alt="Dino Game" class="menu-item">
+        </a>
+    </div>
+
+</body>
+</html>
