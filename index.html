@@ -268,7 +268,7 @@ function startTitleFlash(text) {
 	clearInterval(titleFlashInterval); // Clear any existing interval
 	let visible = true;
 	titleFlashInterval = setInterval(() => {
-		document.title = visible ? text : "";
+		document.title = visible ? text : "    ";
 		visible = !visible;
 	}, 500); // Change flash speed (ms) as needed
 }
@@ -288,11 +288,11 @@ function gameOverStart() {
 			startTitleFlash("NEW HI: " + highScore);
 		} else {
 			stopTitleFlash();
-			document.title = "Score: " + score + " | HI: " + highScore;
+			startTitleFlash("SCORE: " + score + " | HI: " + highScore);
 		}
 	} else {
 		stopTitleFlash();
-		document.title = "Score: " + score + " | HI: " + highScore;
+		startTitleFlash("SCORE: " + score + " | HI: " + highScore);
 	}
 
 	if (spaceDown) {
